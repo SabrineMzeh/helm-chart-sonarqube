@@ -50,7 +50,7 @@ nginx:
   enabled: false
 
 service:
-  type: ClusterIP
+  type: NodePort
   externalPort: 9000
   internalPort: 9000
   labels:
@@ -267,7 +267,7 @@ resources:
     cpu: 400m
     memory: 2Gi
 persistence:
-  enabled: false
+  enabled: true
   ## Set annotations on pvc
   annotations: {}
 
@@ -281,9 +281,9 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass:
+  storageClass: nfs-client
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 10Gi
   uid: 1000
 
   ## Specify extra volumes. Refer to ".spec.volumes" specification : https://kubernetes.io/fr/docs/concepts/storage/volumes/
@@ -331,8 +331,8 @@ postgresql:
   # line below:
   # existingSecret: ""
   # existingSecretPasswordKey: "postgresql-password"
-  postgresqlUsername: "sonarUser"
-  postgresqlPassword: "sonarPass"
+  postgresqlUsername: "sabrine 
+  postgresqlPassword: "sabrine321!"
   postgresqlDatabase: "sonarDB"
   # Specify the TCP port that PostgreSQL should use
   service:
@@ -348,7 +348,7 @@ postgresql:
     enabled: true
     accessMode: ReadWriteOnce
     size: 20Gi
-    storageClass:
+    storageClass: nfs-client
   securityContext:
     # For standard Kubernetes deployment, set enabled=true
     # If using OpenShift, enabled=false for restricted SCC and enabled=true for anyuid/nonroot SCC
